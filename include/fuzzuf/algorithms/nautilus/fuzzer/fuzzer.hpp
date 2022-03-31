@@ -56,6 +56,6 @@ private:
   HierarFlowNode<void(void), void(void)> fuzz_loop;
 };
 
-} // namespace fuzzuf::algorithm::nautilus
+} // namespace fuzzuf::algorithm::nautilus::fuzzer
 
 #endif

@@ -615,4 +615,4 @@ NodeID Unparser::Unparse() {
   return NodeID(_i);
 }
 
-} // namespace fuzzuf::algorithm::nautilus::grammartec;
+} // namespace fuzzuf::algorithm::nautilus::grammartec

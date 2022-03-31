@@ -31,6 +31,7 @@
 #include <boost/uuid/uuid_io.hpp>
 
 namespace fuzzuf::algorithm::libfuzzer {
+
 auto createOptions(Options &dest)
     -> std::tuple<boost::program_options::options_description,
                   boost::program_options::positional_options_description> {
@@ -354,4 +355,5 @@ auto loadInitialInputs(Options &dest, std::minstd_rand &rng) -> ExecInputSet {
 
   return initial_inputs;
 }
+
 } // namespace fuzzuf::algorithm::libfuzzer

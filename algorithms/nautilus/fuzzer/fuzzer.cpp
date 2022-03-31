@@ -379,4 +379,4 @@ bool NautilusFuzzer::ShouldEnd(void) {
 NautilusFuzzer::~NautilusFuzzer() {
 }
 
-} // namespace fuzzuf::algorithm::nautilus
+} // namespace fuzzuf::algorithm::nautilus::fuzzer

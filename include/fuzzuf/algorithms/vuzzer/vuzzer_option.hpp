@@ -27,4 +27,4 @@ constexpr const char* GetDefaultOutfile(void) {
     return ".cur_input";
 }
 
-}
+} // namespace fuzzuf::algorithm::vuzzer::option

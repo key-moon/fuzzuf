@@ -147,5 +147,5 @@ private:
     std::vector< const char* > raw_environment_variables;
     
     // ZeroMqChannel put_channel;
-    FdChannel put_channel;
+    fuzzuf::channel::FdChannel put_channel;
 };

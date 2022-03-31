@@ -37,4 +37,4 @@ void load(
   utils::dictionary::LoadAFLDictionary( filename_, dest, strict, eout );
 }
 
-}
+} // namespace fuzzuf::algorithm::afl::dictionary

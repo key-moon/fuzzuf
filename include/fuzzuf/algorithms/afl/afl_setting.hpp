@@ -51,4 +51,4 @@ struct AFLSetting {
     const int cpuid_to_bind;
 };
 
-} // namespace fuzzuf::algorithm::afl;
+} // namespace fuzzuf::algorithm::afl

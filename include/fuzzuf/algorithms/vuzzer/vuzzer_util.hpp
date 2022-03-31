@@ -56,4 +56,4 @@ std::unique_ptr<std::vector<u8>> GenerateRandomBytesFromDict(
     const std::vector<const dict_t *>& all_dicts
 );
 
-} // namespace fuzzuf::algorithm::afl::util
+} // namespace fuzzuf::algorithm::vuzzer::util

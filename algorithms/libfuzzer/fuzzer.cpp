@@ -32,6 +32,7 @@
 #include <string>
 
 namespace fuzzuf::algorithm::libfuzzer {
+
 LibFuzzer::LibFuzzer(FuzzerArgs &fuzzer_args,
                      const GlobalFuzzerOptions &global,
                      std::function<void(std::string &&)> &&sink_)
@@ -89,4 +90,5 @@ void LibFuzzer::OneLoop() {
     }
   }
 }
+
 } // namespace fuzzuf::algorithm::libfuzzer

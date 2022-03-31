@@ -181,4 +181,4 @@ IJONUpdCalleeRef UpdateMax::operator()(
 
 } // update
 
-} // fuzzuf::algorithm::ijon::routine
+} // namespace fuzzuf::algorithm::ijon::routine

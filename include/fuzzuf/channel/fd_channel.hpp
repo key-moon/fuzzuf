@@ -9,6 +9,8 @@
 
 #include "fuzzuf_cc/execute_put_api_response.h"
 
+namespace fuzzuf::channel {
+
 class FdChannel /* : public Channel */ {
 public:
     FdChannel();
@@ -35,3 +37,5 @@ private:
     int forksrv_read_fd;
     int forksrv_write_fd;
 };
+
+} // namespace fuzzuf::channel

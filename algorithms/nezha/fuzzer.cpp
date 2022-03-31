@@ -31,6 +31,7 @@
 #include <string>
 
 namespace fuzzuf::algorithm::nezha {
+
 NezhaFuzzer::NezhaFuzzer(const FuzzerArgs &fuzzer_args,
                          const GlobalFuzzerOptions &global,
                          std::function<void(std::string &&)> &&sink_)

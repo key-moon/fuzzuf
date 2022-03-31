@@ -26,6 +26,6 @@ namespace fuzzuf::algorithm::libfuzzer::standard_order {
 template <typename T>
 using MutatorStdArgOrderT =
     decltype(T::rng && T::input && T::max_length && T::mutation_history);
-}
+} // namespace fuzzuf::algorithm::libfuzzer::standard_order
 
 #endif

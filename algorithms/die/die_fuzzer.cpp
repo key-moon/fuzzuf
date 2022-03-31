@@ -58,4 +58,4 @@ void DIEFuzzer::BuildFuzzFlow() {
   );
 }
 
-} // namespace fuzzuf::algorithm::die
+} // namespace fuzzuf::algorithm::afl

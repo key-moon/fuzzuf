@@ -53,4 +53,4 @@ void load(
   const std::function< void( std::string&& ) > &eout
 );
 
-} // fuzzuf::algorithm::afl::dictionary
+} // namespace fuzzuf::algorithm::afl::dictionary

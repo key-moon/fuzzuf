@@ -25,6 +25,6 @@
 #include "fuzzuf/algorithms/libfuzzer/config.hpp"
 namespace fuzzuf::algorithm::nezha {
 using FuzzerCreateInfo = libfuzzer::FuzzerCreateInfo;
-}
+} // namespace fuzzuf::algorithm::nezha
 
 #endif

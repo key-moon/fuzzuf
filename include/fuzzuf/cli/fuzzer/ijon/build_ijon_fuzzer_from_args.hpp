@@ -54,7 +54,7 @@ static void usage(po::options_description &desc) {
 // Used only for CLI
 template <class TFuzzer, class TIJONFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildIJONFuzzerFromArgs(
-    FuzzerArgs &fuzzer_args, 
+    fuzzuf::cli::FuzzerArgs &fuzzer_args, 
     GlobalFuzzerOptions &global_options
 ) {
     po::positional_options_description pargs_desc;

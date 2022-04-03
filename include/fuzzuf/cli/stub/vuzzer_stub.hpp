@@ -24,6 +24,8 @@
 #include "fuzzuf/fuzzer/fuzzer.hpp"
 #include "fuzzuf/algorithms/vuzzer/vuzzer_state.hpp"
 
+namespace fuzzuf::cli::stub {
+
 template<class State>
 class VUzzerStub : public Fuzzer {
 public:
@@ -39,3 +41,5 @@ public:
     void ReceiveStopSignal(void) {}
     bool ShouldEnd(void) { return false; }
 };
+
+} // namespace fuzzuf::cli::stub

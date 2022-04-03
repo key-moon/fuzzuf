@@ -39,7 +39,11 @@
 #include <random>
 #include <vector>
 
+namespace fuzzuf::cli {
+
 struct GlobalFuzzerOptions;
+
+} // namespace fuzzuf::cli
 
 namespace fuzzuf::algorithm::libfuzzer {
 
@@ -49,7 +53,7 @@ class LibFuzzer : public ::Fuzzer {
   using Wrapped = utils::type_traits::replace_return_type_t<void, Func>;
 
 public:
-  LibFuzzer(FuzzerArgs &, const GlobalFuzzerOptions &,
+  LibFuzzer(fuzzuf::cli::FuzzerArgs &, const fuzzuf::cli::GlobalFuzzerOptions &,
             std::function<void(std::string &&)> &&);
   virtual ~LibFuzzer() {}
   virtual void OneLoop();

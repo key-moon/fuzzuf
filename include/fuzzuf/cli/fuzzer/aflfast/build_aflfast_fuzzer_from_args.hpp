@@ -33,6 +33,8 @@
 
 namespace po = boost::program_options;
 
+namespace fuzzuf::cli::fuzzer::aflfast {
+
 struct AFLFastFuzzerOptions {
     bool forksrv;                           // Optional
     bool frida_mode;                        // Optional
@@ -44,8 +46,6 @@ struct AFLFastFuzzerOptions {
         {};
 };
 
-namespace fuzzuf::cli::fuzzer::aflfast {
-
 // Fuzzer specific help
 // TODO: Provide better help message
 static void usage(po::options_description &desc) {
@@ -54,13 +54,10 @@ static void usage(po::options_description &desc) {
     exit(1);
 }
 
-}
-
-
 // Used only for CLI
 template <class TFuzzer, class TAFLFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildAFLFastFuzzerFromArgs(
-    FuzzerArgs &fuzzer_args, 
+    fuzzuf::cli::FuzzerArgs &fuzzer_args, 
     GlobalFuzzerOptions &global_options
 ) {
     po::positional_options_description pargs_desc;
@@ -222,3 +219,5 @@ std::unique_ptr<TFuzzer> BuildAFLFastFuzzerFromArgs(
                 )
             );
 }
+
+} // namespace fuzzuf::cli::fuzzer::aflfast

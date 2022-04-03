@@ -22,4 +22,4 @@ void SetupExecutionEnvironment() {
     sigaction(SIGPIPE, &sa, NULL);
 }
 
-}
+} // namespace fuzzuf::cli

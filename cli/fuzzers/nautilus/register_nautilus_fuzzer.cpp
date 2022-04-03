@@ -22,9 +22,6 @@
 
 namespace fuzzuf::cli::fuzzer::nautilus {
 
-static FuzzerBuilderRegister global_nautilus_register(
-  "nautilus",
-  BuildNautilusFuzzerFromArgs<Fuzzer, NautilusFuzzer, executor::AFLExecutorInterface>
-);
+static FuzzerBuilderRegister global_nautilus_register("nautilus", BuildNautilusFuzzerFromArgs<Fuzzer, NautilusFuzzer, executor::AFLExecutorInterface>);
 
 } // namespace fuzzuf::cli::fuzzer::nautilus

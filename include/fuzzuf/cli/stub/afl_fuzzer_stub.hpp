@@ -24,6 +24,8 @@
 #include "fuzzuf/fuzzer/fuzzer.hpp"
 #include "fuzzuf/algorithms/afl/afl_state.hpp"
 
+namespace fuzzuf::cli::stub {
+
 template<class State>
 class AFLFuzzerStub : public Fuzzer {
 public:
@@ -40,3 +42,5 @@ public:
     void ReceiveStopSignal(void) {}
     bool ShouldEnd(void) { return false; }
 };
+
+} // namespace fuzzuf::cli::stub

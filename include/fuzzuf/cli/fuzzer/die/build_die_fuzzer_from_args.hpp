@@ -48,8 +48,6 @@ static void usage(po::options_description &desc) {
     exit(1);
 }
 
-}
-
 using fuzzuf::algorithm::die::DIEFuzzer;
 
 struct DIEOptions {
@@ -76,7 +74,7 @@ struct DIEOptions {
  * @param (global_options) Global options
  */
 template <class TFuzzer, class TDIEFuzzer, class TExecutor>
-std::unique_ptr<TFuzzer> BuildDIEFuzzerFromArgs(FuzzerArgs &fuzzer_args,
+std::unique_ptr<TFuzzer> BuildDIEFuzzerFromArgs(fuzzuf::cli::FuzzerArgs &fuzzer_args,
                                                 GlobalFuzzerOptions &global_options) {
   po::positional_options_description pargs_desc;
   pargs_desc.add("fuzzer", 1);
@@ -249,3 +247,5 @@ std::unique_ptr<TFuzzer> BuildDIEFuzzerFromArgs(FuzzerArgs &fuzzer_args,
     )
   );
 }
+
+} // namespace fuzzuf::cli::fuzzer::die

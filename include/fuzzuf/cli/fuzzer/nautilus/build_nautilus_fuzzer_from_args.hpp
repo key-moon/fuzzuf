@@ -49,8 +49,6 @@ static void usage(po::options_description &desc) {
     exit(1);
 }
 
-}
-
 using fuzzuf::algorithm::nautilus::fuzzer::NautilusFuzzer;
 
 /**
@@ -61,7 +59,7 @@ using fuzzuf::algorithm::nautilus::fuzzer::NautilusFuzzer;
  */
 template <class TFuzzer, class TNautilusFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
-  FuzzerArgs &fuzzer_args,
+  fuzzuf::cli::FuzzerArgs &fuzzer_args,
   GlobalFuzzerOptions &global_options
 ) {
   po::positional_options_description pargs_desc;
@@ -261,5 +259,7 @@ std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
     )
   );
 }
+
+} // namespace fuzzuf::cli::fuzzer::nautilus
 
 #endif

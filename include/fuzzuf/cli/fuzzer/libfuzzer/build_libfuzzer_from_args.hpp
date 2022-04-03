@@ -25,10 +25,12 @@
 
 namespace po = boost::program_options;
 
+namespace fuzzuf::cli::fuzzer::libfuzzer {
+
 // Used only for CLI
 template <class TFuzzer, class TLibFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildLibFuzzerFromArgs(
-    FuzzerArgs &fuzzer_args, 
+    fuzzuf::cli::FuzzerArgs &fuzzer_args, 
     GlobalFuzzerOptions &global_options
 ) {
     std::unique_ptr<TFuzzer> p(
@@ -36,3 +38,5 @@ std::unique_ptr<TFuzzer> BuildLibFuzzerFromArgs(
                     [](std::string &&m) { std::cout << m << std::flush; }));
     return p;
 }
+
+} // namespace fuzzuf::cli::fuzzer::libfuzzer

@@ -19,6 +19,8 @@
 #include "fuzzuf/cli/command_line_args.hpp"
 #include "fuzzuf/exceptions.hpp"
 
+namespace fuzzuf::cli {
+
 struct PutArgs {
     std::vector<std::string> args;
     int argc;
@@ -39,4 +41,4 @@ struct PutArgs {
     }
 };
 
-
+} // namespace fuzzuf::cli

@@ -21,6 +21,8 @@
 #include "fuzzuf/cli/fuzzer_builder.hpp"
 #include "fuzzuf/cli/fuzzer/afl/build_afl_fuzzer_from_args.hpp"
 
+namespace fuzzuf::cli {
+
 using BuilderMap = std::map<std::string, FuzzerBuilder>;
 
 // Used only for CLI
@@ -33,3 +35,5 @@ class FuzzerBuilderRegister {
     private:
         static BuilderMap& GetBuilderMap();
 };
+
+} // namespace fuzzuf::cli

@@ -13,6 +13,8 @@
 #include <unistd.h>
 #include <errno.h>
 
+namespace fuzzuf::channel {
+
 FdChannel::FdChannel() {
     // Nothing to do
 }
@@ -203,3 +205,5 @@ void FdChannel::TerminateForkServer() {
         forksrv_pid = -1;
     }
 }
+
+} // namespace fuzzuf::channel

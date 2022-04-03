@@ -28,6 +28,6 @@ namespace fuzzuf::cli {
 
 void SetupExecutionEnvironment();
 
-}
+} // namespace fuzzuf::cli
 
 #endif // FUZZUF_INCLUDE_CLI_SETUP_EXECUTION_ENVIRONMENT_HPP

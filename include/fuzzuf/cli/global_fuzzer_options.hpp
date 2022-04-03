@@ -69,8 +69,6 @@ private:
 
 std::istream& operator>>(std::istream& in, ExecutorKind& executor);
 
-} // namespace fuzzuf::cli
-
 struct GlobalFuzzerOptions {
     bool help;
     std::string fuzzer;                     // Required
@@ -97,3 +95,5 @@ struct GlobalFuzzerOptions {
         log_file(std::nullopt)
         {};
 };
+
+} // namespace fuzzuf::cli

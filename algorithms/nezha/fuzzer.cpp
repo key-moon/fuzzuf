@@ -32,8 +32,8 @@
 
 namespace fuzzuf::algorithm::nezha {
 
-NezhaFuzzer::NezhaFuzzer(const FuzzerArgs &fuzzer_args,
-                         const GlobalFuzzerOptions &global,
+NezhaFuzzer::NezhaFuzzer(const fuzzuf::cli::FuzzerArgs &fuzzer_args,
+                         const fuzzuf::cli::GlobalFuzzerOptions &global,
                          std::function<void(std::string &&)> &&sink_)
     : node_tracer([this](std::string &&m) { sink("trace : " + m); }) {
   namespace po = boost::program_options;

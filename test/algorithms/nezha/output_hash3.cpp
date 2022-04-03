@@ -94,11 +94,11 @@ BOOST_AUTO_TEST_CASE(HierarFlowExecute) {
   cargs.reserve(args.size());
   std::transform(args.begin(), args.end(), std::back_inserter(cargs),
                  [](const auto &v) { return v.c_str(); });
-  FuzzerArgs wrapped_args;
+  fuzzuf::cli::FuzzerArgs wrapped_args;
   wrapped_args.argc = int(cargs.size()) - 1;
   wrapped_args.argv = std::next(cargs.data());
 
-  ne::NezhaFuzzer fuzzer(wrapped_args, GlobalFuzzerOptions(),
+  ne::NezhaFuzzer fuzzer(wrapped_args, fuzzuf::cli::GlobalFuzzerOptions(),
                          [](std::string &&m) { std::cout << m << std::flush; });
 
   while (!fuzzer.ShouldEnd()) {

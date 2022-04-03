@@ -38,7 +38,7 @@
 GlobalFuzzerOptions default_options; // Default value goes here
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_AllOptions) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
 
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {
@@ -51,11 +51,11 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_AllOptions) {
         "--exec_timelimit_ms=123",
         "--exec_memlimit=456"
         };
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
-    FuzzerArgs fuzzer_args = ParseGlobalOptionsForFuzzer(args, options);
+    fuzzuf::cli::FuzzerArgs fuzzer_args = fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
     // Check if fuzzer is captured
     BOOST_CHECK_EQUAL(options.fuzzer, "fuzzer");
@@ -70,14 +70,14 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_AllOptions) {
 }
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_DefaultValues) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {"fuzzuf", "fuzzer", "--"};
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
-    ParseGlobalOptionsForFuzzer(args, options);
+    fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
     // `*_dir` must be default value since they are not specifed by the commad line
     BOOST_CHECK_EQUAL(options.in_dir, default_options.in_dir);
@@ -94,14 +94,14 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKinds) {
 
     // Check `native` executor.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=native", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
-        ParseGlobalOptionsForFuzzer(args, options);
+        fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
         // Check `executor` and `proxy_path`.
         BOOST_CHECK_EQUAL(options.executor, fuzzuf::cli::ExecutorKind::NATIVE);
@@ -110,14 +110,14 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKinds) {
 
     // Check `qemu` executor.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=qemu", "--proxy_path=test_proxy", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
-        ParseGlobalOptionsForFuzzer(args, options);
+        fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
         // Check `executor` and `proxy_path`.
         BOOST_CHECK_EQUAL(options.executor, fuzzuf::cli::ExecutorKind::QEMU);
@@ -126,14 +126,14 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKinds) {
 
     // Check `coresight` executor.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=coresight", "--proxy_path=test_proxy", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
-        ParseGlobalOptionsForFuzzer(args, options);
+        fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
         // Check `executor` and `proxy_path`.
         BOOST_CHECK_EQUAL(options.executor, fuzzuf::cli::ExecutorKind::CORESIGHT);
@@ -145,10 +145,10 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKindsFailure) {
 
     // Supply unknown executor type `foo`.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=foo", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
@@ -159,10 +159,10 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKindsFailure) {
 
     // Supply `proxy_path` with `native` executor.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=native", "--proxy_path=test_proxy", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
@@ -173,10 +173,10 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKindsFailure) {
 
     // `qemu` executor without supplying `proxy_path`.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=qemu", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
@@ -187,10 +187,10 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKindsFailure) {
 
     // `coresight` executor without supplying `proxy_path`.
     {
-        GlobalFuzzerOptions options;
+        fuzzuf::cli::GlobalFuzzerOptions options;
         #pragma GCC diagnostic ignored "-Wwrite-strings"
         const char *argv[] = {"fuzzuf", "fuzzer", "--executor=coresight", "--"};
-        GlobalArgs args = {
+        fuzzuf::cli::GlobalArgs args = {
             .argc = Argc(argv),
             .argv = argv,
         };
@@ -201,14 +201,14 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_ExecutorKindsFailure) {
 }
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_LogFileSpecified) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {"fuzzuf", "fuzzer", "--log_file=5rC3kk6PzF5P2sPs.log", "--"};
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
-    ParseGlobalOptionsForFuzzer(args, options);
+    fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 
     BOOST_CHECK_EQUAL(options.logger, Logger::LogFile);
 
@@ -216,19 +216,19 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_LogFileSpecified) {
 }
 
 inline void BaseSenario_ParseGlobalFuzzerOptions_WithUnregisteredOption(
-    const char test_case_name[], GlobalArgs &args, GlobalFuzzerOptions &options) 
+    const char test_case_name[], fuzzuf::cli::GlobalArgs &args, fuzzuf::cli::GlobalFuzzerOptions &options) 
 {
     UNUSED(test_case_name);
 
     // Any of exceptions should not be thrown. ParseGlobalOptionsForFuzzer ignores unregistered options while parsing.
-    ParseGlobalOptionsForFuzzer(args, options);
+    fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
 }
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_WithUnregisteredOption_Case1) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {"fuzzuf", "fuzzer", "--in_dir=in", "--no-such-option"};
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
@@ -236,10 +236,10 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_WithUnregisteredOption_Case1) {
 }
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_WithUnregisteredOption_Case2) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {"fuzzuf", "fuzzer", "--in_dir=in", "--no-such-option", "--out_dir=out"}; // Sandwitch unregistered option
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
@@ -247,7 +247,7 @@ BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_WithUnregisteredOption_Case2) {
 }
 
 BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndPUT) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {
         "fuzzuf",
@@ -261,7 +261,7 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndPUT) {
         "../put_binaries/command_wrapper", // PUT
         "Jpx1kB6oh8N9wUe0" // arguments
         };
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
@@ -270,8 +270,8 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndPUT) {
     using fuzzuf::executor::AFLExecutorInterface;
 
     // Parse global options and PUT, and build fuzzer
-    auto fuzzer_args = ParseGlobalOptionsForFuzzer(args, options);
-    auto fuzzer = BuildAFLFuzzerFromArgs<AFLFuzzerStub<AFLState>, AFLFuzzerStub<AFLState>, AFLExecutorInterface>(
+    auto fuzzer_args = fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
+    auto fuzzer = fuzzuf::cli::fuzzer::afl::BuildAFLFuzzerFromArgs<fuzzuf::cli::stub::AFLFuzzerStub<AFLState>, fuzzuf::cli::stub::AFLFuzzerStub<AFLState>, AFLExecutorInterface>(
             fuzzer_args, options
         );
 
@@ -284,7 +284,7 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndPUT) {
 }
 
 BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndFuzzerOptionAndPUT) {
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     const char *argv[] = {
         "fuzzuf",
@@ -300,7 +300,7 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndFuzzerOptionAndPUT) {
         "../put_binaries/command_wrapper", // PUT
         "f996ko6rvPgSajvm" // arguments
         };
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
@@ -309,8 +309,8 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndFuzzerOptionAndPUT) {
     using fuzzuf::executor::AFLExecutorInterface;
 
     // Parse global options and PUT, and build fuzzer
-    auto fuzzer_args = ParseGlobalOptionsForFuzzer(args, options);
-    auto fuzzer = BuildAFLFuzzerFromArgs<AFLFuzzerStub<AFLState>, AFLFuzzerStub<AFLState>, AFLExecutorInterface>(
+    auto fuzzer_args = fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
+    auto fuzzer = fuzzuf::cli::fuzzer::afl::BuildAFLFuzzerFromArgs<fuzzuf::cli::stub::AFLFuzzerStub<AFLState>, fuzzuf::cli::stub::AFLFuzzerStub<AFLState>, AFLExecutorInterface>(
             fuzzer_args, options
         );
 
@@ -331,7 +331,7 @@ BOOST_AUTO_TEST_CASE(BuildAFLByParsingGlobalOptionAndFuzzerOptionAndPUT) {
 BOOST_AUTO_TEST_CASE(BuildAFLFastByParsingGlobalOptionAndPUT) {
     using AFLFastState = fuzzuf::algorithm::aflfast::AFLFastState;
     using fuzzuf::executor::AFLExecutorInterface;
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     // 本来はschedule用のオプションもテストされるべきだが、CLI側の改修が必要なので一旦放置
     const char *argv[] = {
@@ -346,14 +346,14 @@ BOOST_AUTO_TEST_CASE(BuildAFLFastByParsingGlobalOptionAndPUT) {
         "../put_binaries/command_wrapper", // PUT
         "oung6UgoQue1eiYu" // arguments
         };
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
 
     // Parse global options and PUT, and build fuzzer
-    auto fuzzer_args = ParseGlobalOptionsForFuzzer(args, options);
-    auto fuzzer = BuildAFLFastFuzzerFromArgs<AFLFuzzerStub<AFLFastState>, AFLFuzzerStub<AFLFastState>, AFLExecutorInterface>(
+    auto fuzzer_args = fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
+    auto fuzzer = fuzzuf::cli::fuzzer::aflfast::BuildAFLFastFuzzerFromArgs<fuzzuf::cli::stub::AFLFuzzerStub<AFLFastState>, fuzzuf::cli::stub::AFLFuzzerStub<AFLFastState>, AFLExecutorInterface>(
             fuzzer_args, options
         );
 
@@ -369,7 +369,7 @@ BOOST_AUTO_TEST_CASE(BuildAFLFastByParsingGlobalOptionAndPUT) {
 
 BOOST_AUTO_TEST_CASE(BuildVUzzerByParsingGlobalOptionAndPUT) {
     using VUzzerState = fuzzuf::algorithm::vuzzer::VUzzerState;
-    GlobalFuzzerOptions options;
+    fuzzuf::cli::GlobalFuzzerOptions options;
     #pragma GCC diagnostic ignored "-Wwrite-strings"
     
     const char *argv[] = {
@@ -390,14 +390,14 @@ BOOST_AUTO_TEST_CASE(BuildVUzzerByParsingGlobalOptionAndPUT) {
         "../put_binaries/command_wrapper", // PUT
         "HQ5lspLelPJPEC35" // arguments
         };
-    GlobalArgs args = {
+    fuzzuf::cli::GlobalArgs args = {
         .argc = Argc(argv),
         .argv = argv,
     };
 
     // Parse global options and PUT, and build fuzzer
-    auto fuzzer_args = ParseGlobalOptionsForFuzzer(args, options);
-    auto fuzzer = BuildVUzzerFromArgs<VUzzerStub<VUzzerState>, VUzzerStub<VUzzerState>>(
+    auto fuzzer_args = fuzzuf::cli::ParseGlobalOptionsForFuzzer(args, options);
+    auto fuzzer = fuzzuf::cli::fuzzer::vuzzer::BuildVUzzerFromArgs<fuzzuf::cli::stub::VUzzerStub<VUzzerState>, fuzzuf::cli::stub::VUzzerStub<VUzzerState>>(
             fuzzer_args, options
         );
 

@@ -33,8 +33,8 @@
 
 namespace fuzzuf::algorithm::libfuzzer {
 
-LibFuzzer::LibFuzzer(FuzzerArgs &fuzzer_args,
-                     const GlobalFuzzerOptions &global,
+LibFuzzer::LibFuzzer(fuzzuf::cli::FuzzerArgs &fuzzer_args,
+                     const fuzzuf::cli::GlobalFuzzerOptions &global,
                      std::function<void(std::string &&)> &&sink_)
     : node_tracer([this](std::string &&m) { sink("trace : " + m); }) {
   Options opts;

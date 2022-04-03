@@ -30,7 +30,11 @@
 #include <string>
 #include <vector>
 
+namespace fuzzuf::cli {
+
 struct GlobalFuzzerOptions;
+
+} // namespace fuzzuf::cli
 
 namespace fuzzuf::algorithm::libfuzzer {
 struct Options {
@@ -56,7 +60,7 @@ auto createOptions(Options &)
 auto postProcess(
     const boost::program_options::options_description &desc,
     const boost::program_options::positional_options_description &pd, int argc,
-    const char *argv[], const GlobalFuzzerOptions &,
+    const char *argv[], const fuzzuf::cli::GlobalFuzzerOptions &,
     std::function<void(std::string &&)> &&sink, Options &dest) -> bool;
 auto loadInitialInputs(Options &dest, std::minstd_rand &rng) -> ExecInputSet;
 } // namespace fuzzuf::algorithm::libfuzzer

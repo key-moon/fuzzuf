@@ -33,6 +33,8 @@
 
 namespace po = boost::program_options;
 
+namespace fuzzuf::cli::fuzzer::afl {
+
 struct AFLFuzzerOptions {
     bool forksrv;                           // Optional
     std::string dict_file;                  // Optional
@@ -46,8 +48,6 @@ struct AFLFuzzerOptions {
         {};
 };
 
-namespace fuzzuf::cli::fuzzer::afl {
-
 // Fuzzer specific help
 // TODO: Provide better help message
 static void usage(po::options_description &desc) {
@@ -56,12 +56,10 @@ static void usage(po::options_description &desc) {
     exit(1);
 }
 
-}
-
 // Used only for CLI
 template <class TFuzzer, class TAFLFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildAFLFuzzerFromArgs(
-    FuzzerArgs &fuzzer_args, 
+    fuzzuf::cli::FuzzerArgs &fuzzer_args, 
     GlobalFuzzerOptions &global_options
 ) {
     po::positional_options_description pargs_desc;
@@ -247,3 +245,5 @@ std::unique_ptr<TFuzzer> BuildAFLFuzzerFromArgs(
                 )
             );
 }
+
+} // namespace fuzzuf::cli::fuzzer::afl

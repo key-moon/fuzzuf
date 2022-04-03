@@ -29,13 +29,14 @@
 
 #include <iostream>
 
+namespace fuzzuf::cli {
 
 int main(int argc, const char *argv[]) {
   try {
-    fuzzuf::cli::SetupExecutionEnvironment();
+    SetupExecutionEnvironment();
 
     // Prepare a fuzzer specified by the command line as it states
-    auto fuzzer = fuzzuf::cli::CreateFuzzerInstanceFromArgv(argc, argv);
+    auto fuzzer = CreateFuzzerInstanceFromArgv(argc, argv);
 
     // TODO: Implement signal handler settings
     // It would be nice if a CLI's signal handler can be responsible for calling fuzzer->ReceiveStopSignal() in the 
@@ -69,3 +70,5 @@ int main(int argc, const char *argv[]) {
 
   return 0;
 }
+
+} // namespace fuzzuf::cli

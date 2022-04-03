@@ -22,10 +22,12 @@
 #include "fuzzuf/cli/put_args.hpp"
 #include "fuzzuf/exceptions.hpp"
 
+namespace fuzzuf::cli::fuzzer::nezha {
+
 // Used only for CLI
 template <class TFuzzer, class TNezhaFuzzer, class TExecutor>
 std::unique_ptr<TFuzzer> BuildNezhaFuzzerFromArgs(
-    FuzzerArgs &fuzzer_args, 
+    fuzzuf::cli::FuzzerArgs &fuzzer_args, 
     GlobalFuzzerOptions &global_options
 ) {
     std::unique_ptr<TFuzzer> p(
@@ -33,3 +35,5 @@ std::unique_ptr<TFuzzer> BuildNezhaFuzzerFromArgs(
                     [](std::string &&m) { std::cout << m << std::flush; }));
     return p;
 }
+
+} // namespace fuzzuf::cli::fuzzer::nezha

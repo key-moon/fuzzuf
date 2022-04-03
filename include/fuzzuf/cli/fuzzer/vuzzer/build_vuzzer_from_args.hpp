@@ -45,8 +45,6 @@ static void usage(po::options_description &desc) {
     exit(1);
 }
 
-}
-
 using fuzzuf::algorithm::vuzzer::VUzzer;
 
 struct VUzzerOptions {
@@ -70,7 +68,7 @@ struct VUzzerOptions {
 
 // Used only for CLI
 template <class TFuzzer, class TVUzzer>
-std::unique_ptr<TFuzzer> BuildVUzzerFromArgs(FuzzerArgs &fuzzer_args, GlobalFuzzerOptions &global_options) {
+std::unique_ptr<TFuzzer> BuildVUzzerFromArgs(fuzzuf::cli::FuzzerArgs &fuzzer_args, GlobalFuzzerOptions &global_options) {
     po::positional_options_description pargs_desc;
     pargs_desc.add("fuzzer", 1);
     pargs_desc.add("pargs", -1);
@@ -202,5 +200,7 @@ std::unique_ptr<TFuzzer> BuildVUzzerFromArgs(FuzzerArgs &fuzzer_args, GlobalFuzz
             )
         );
 }
+
+} // namespace fuzzuf::cli::fuzzer::vuzzer
 
 #endif

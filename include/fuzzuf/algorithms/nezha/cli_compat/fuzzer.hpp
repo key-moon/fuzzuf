@@ -36,7 +36,11 @@
 #include <variant>
 #include <vector>
 
+namespace fuzzuf::cli {
+
 struct GlobalFuzzerOptions;
+
+} // namespace fuzzuf::cli
 
 namespace fuzzuf::algorithm::nezha {
 
@@ -49,7 +53,7 @@ class NezhaFuzzer : public ::Fuzzer {
   using wrapped = utils::type_traits::replace_return_type_t<void, Func>;
 
 public:
-  NezhaFuzzer(const FuzzerArgs &, const GlobalFuzzerOptions &,
+  NezhaFuzzer(const fuzzuf::cli::FuzzerArgs &, const fuzzuf::cli::GlobalFuzzerOptions &,
               std::function<void(std::string &&)> &&);
   virtual ~NezhaFuzzer() {}
   virtual void OneLoop();

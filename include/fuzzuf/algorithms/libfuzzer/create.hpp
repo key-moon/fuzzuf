@@ -126,7 +126,7 @@ auto createExecuteAndFeedback(const fs::path &target_path,
 
   auto create_coverage = hf::CreateNode<Clear<F, decltype(Ord::coverage)>>();
 
-  std::shared_ptr<NativeLinuxExecutor> nle_(new NativeLinuxExecutor(
+  std::shared_ptr<fuzzuf::executor::NativeLinuxExecutor> nle_(new fuzzuf::executor::NativeLinuxExecutor(
       {target_path.string(), output_file_path.string()},
       create_info.exec_timelimit_ms, create_info.exec_memlimit,
       create_info.forksrv, path_to_write_seed, create_info.afl_shm_size,

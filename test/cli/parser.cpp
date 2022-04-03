@@ -35,7 +35,7 @@
 
 #define Argc(argv) (sizeof(argv) / sizeof(char *))
 
-GlobalFuzzerOptions default_options; // Default value goes here
+fuzzuf::cli::GlobalFuzzerOptions default_options; // Default value goes here
 
 BOOST_AUTO_TEST_CASE(ParseGlobalFuzzerOptions_AllOptions) {
     fuzzuf::cli::GlobalFuzzerOptions options;

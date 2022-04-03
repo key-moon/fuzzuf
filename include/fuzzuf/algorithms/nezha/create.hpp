@@ -70,7 +70,7 @@ auto CreateRunSingleTarget(const fs::path &target_path,
   const auto output_file_path = create_info.output_dir / "result";
   const auto path_to_write_seed = create_info.output_dir / "cur_input";
 
-  std::shared_ptr<NativeLinuxExecutor> nle(new NativeLinuxExecutor(
+  std::shared_ptr<fuzzuf::executor::NativeLinuxExecutor> nle(new fuzzuf::executor::NativeLinuxExecutor(
       {target_path.string(), output_file_path.string()},
       create_info.exec_timelimit_ms, create_info.exec_memlimit,
       create_info.forksrv, path_to_write_seed, create_info.afl_shm_size,

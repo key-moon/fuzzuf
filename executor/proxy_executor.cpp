@@ -39,6 +39,8 @@
 #include "fuzzuf/feedback/put_exit_reason_type.hpp"
 #include "fuzzuf/logger/logger.hpp"
 
+namespace fuzzuf::executor {
+
 bool ProxyExecutor::has_setup_sighandlers = false;
 
 ProxyExecutor* ProxyExecutor::active_instance = nullptr;
@@ -1058,3 +1060,5 @@ fuzzuf::executor::output_t ProxyExecutor::MoveStdOut() {
 fuzzuf::executor::output_t ProxyExecutor::MoveStdErr() {
     return std::move( stderr_buffer );
 }
+
+} // namespace fuzzuf::executor

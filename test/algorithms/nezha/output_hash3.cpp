@@ -111,13 +111,13 @@ BOOST_AUTO_TEST_CASE(HierarFlowExecute) {
     namespace tt = boost::test_tools;
     const auto output_file_path = create_info.output_dir / "result";
     const auto path_to_write_seed = create_info.output_dir / "cur_input";
-    std::shared_ptr<NativeLinuxExecutor> nle1(new NativeLinuxExecutor(
+    std::shared_ptr<fuzzuf::executor::NativeLinuxExecutor> nle1(new fuzzuf::executor::NativeLinuxExecutor(
         {FUZZUF_FUZZTOYS_DIR "/fuzz_toys-csv_small", output_file_path.string()},
         create_info.exec_timelimit_ms, create_info.exec_memlimit,
         create_info.forksrv, path_to_write_seed, create_info.afl_shm_size,
         create_info.bb_shm_size, true));
     auto executor1 = std::make_unique<LibFuzzerExecutorInterface>(std::move(nle1));
-    std::shared_ptr<NativeLinuxExecutor> nle2(new NativeLinuxExecutor(
+    std::shared_ptr<fuzzuf::executor::NativeLinuxExecutor> nle2(new fuzzuf::executor::NativeLinuxExecutor(
         {FUZZUF_FUZZTOYS_DIR "/fuzz_toys-csv", output_file_path.string()},
         create_info.exec_timelimit_ms, create_info.exec_memlimit,
         create_info.forksrv, path_to_write_seed, create_info.afl_shm_size,

@@ -77,7 +77,7 @@ static void AFLLoop(bool forksrv) {
   SetupDirs(setting->out_dir.string());
 
   // Create NativeLinuxExecutor
-  auto nle = std::make_shared<NativeLinuxExecutor>(
+  auto nle = std::make_shared<fuzzuf::executor::NativeLinuxExecutor>(
       setting->argv, setting->exec_timelimit_ms, setting->exec_memlimit,
       setting->forksrv,
       setting->out_dir / option::GetDefaultOutfile<AFLFastTag>(),

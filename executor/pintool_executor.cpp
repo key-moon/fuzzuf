@@ -17,6 +17,8 @@
  */
 #include "fuzzuf/executor/pintool_executor.hpp"
 
+namespace fuzzuf::executor {
+
 PinToolExecutor::PinToolExecutor(  
     const fs::path &proxy_path,
     const std::vector<std::string> &pargv,
@@ -55,3 +57,5 @@ void PinToolExecutor::SetCArgvAndDecideInputMode() {
     }
     cargv.emplace_back(nullptr);
 }
+
+} // namespace fuzzuf::executor

@@ -19,6 +19,8 @@
 
 #include "fuzzuf/logger/logger.hpp"
 
+namespace fuzzuf::executor {
+
 // NOTE:
 //    - PTExecutor assume it can create a file at `path_to_write_input`.
 PTExecutor::PTExecutor(
@@ -77,3 +79,5 @@ bool PTExecutor::IsFeedbackLocked() {
     || (afl_pt_path_coverage.GetLockUseCount() > 1)
     || (afl_pt_path_fav.GetLockUseCount() > 1);
 }
+
+} // namespace fuzzuf::executor

@@ -140,7 +140,7 @@ std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
   }
 
   if (global_options.executor == ExecutorKind::QEMU) {
-    bitmap_size = QEMUExecutor::QEMU_SHM_SIZE;
+    bitmap_size = fuzzuf::executor::QEMUExecutor::QEMU_SHM_SIZE;
   }
 
   po::notify(vm);
@@ -200,7 +200,7 @@ std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
   std::shared_ptr<TExecutor> executor;
   switch (global_options.executor) {
   case ExecutorKind::NATIVE: {
-    auto nle = std::make_shared<NativeLinuxExecutor>(
+    auto nle = std::make_shared<fuzzuf::executor::NativeLinuxExecutor>(
       put.Args(),
       setting->exec_timeout_ms,
       setting->exec_memlimit,
@@ -215,7 +215,7 @@ std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
 
   case ExecutorKind::QEMU: {
     // NOTE: Assuming setting->bitmap_size == QEMUExecutor::QEMU_SHM_SIZE
-    auto qe = std::make_shared<QEMUExecutor>(
+    auto qe = std::make_shared<fuzzuf::executor::QEMUExecutor>(
       global_options.proxy_path.value(),
       put.Args(),
       setting->exec_timeout_ms,
@@ -229,7 +229,7 @@ std::unique_ptr<TFuzzer> BuildNautilusFuzzerFromArgs(
 
 #ifdef __aarch64__
   case ExecutorKind::CORESIGHT: {
-    auto cse = std::make_shared<CoreSightExecutor>(
+    auto cse = std::make_shared<fuzzuf::executor::CoreSightExecutor>(
       global_options.proxy_path.value(),
       put.Args(),
       setting->exec_timeout_ms,

@@ -30,7 +30,6 @@ struct ChildState {
 
 using output_t = std::vector< std::uint8_t >;
 constexpr std::size_t output_block_size = 512u;
-}
 
 // A base class that abstracts any kinds of execution environments and fuzz executions.
 // Inherit this class if you want to derive `FooBarExecutor` for a new execution environment, FooBar.
@@ -88,3 +87,5 @@ public:
 protected:
     std::shared_ptr<u8> lock;
 };
+
+} // namespace fuzzuf::executor

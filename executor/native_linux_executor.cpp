@@ -38,6 +38,8 @@
 #include "fuzzuf/feedback/put_exit_reason_type.hpp"
 #include "fuzzuf/logger/logger.hpp"
 
+namespace fuzzuf::executor {
+
 bool NativeLinuxExecutor::has_setup_sighandlers = false;
 
 NativeLinuxExecutor* NativeLinuxExecutor::active_instance = nullptr;
@@ -275,12 +277,12 @@ namespace detail {
     bool read_chunk( Dest &dest, int fd ) {
         std::size_t cur_size = dest.size();
         dest.resize(
-            cur_size + fuzzuf::executor::output_block_size
+            cur_size + output_block_size
         );
         auto read_stat = read(
             fd,
             std::next( dest.data(), cur_size ),
-            fuzzuf::executor::output_block_size
+            output_block_size
         );
         if( read_stat < 0 ) {
             dest.resize(cur_size); // reset dest, whatever the error is
@@ -349,7 +351,7 @@ void NativeLinuxExecutor::Run(const u8 *buf, u32 len, u32 timeout_ms) {
     // This structure is shared by both parent process and child process.
     // Since execv never returns on success, it is initialized as success(0), then set value on failed.
     auto child_state = fuzzuf::utils::interprocess::create_shared_object(
-      fuzzuf::executor::ChildState{ 0, 0 }
+      ChildState{ 0, 0 }
     );
 
     std::array< int, 2u > stdout_fd{ 0, 0 };
@@ -1023,10 +1025,12 @@ void NativeLinuxExecutor::ReceiveStopSignal(void) {
     KillChildWithoutWait();
 }
 
-fuzzuf::executor::output_t NativeLinuxExecutor::MoveStdOut() {
+output_t NativeLinuxExecutor::MoveStdOut() {
     return std::move( stdout_buffer );
 }
 
-fuzzuf::executor::output_t NativeLinuxExecutor::MoveStdErr() {
+output_t NativeLinuxExecutor::MoveStdErr() {
     return std::move( stderr_buffer );
 }
+
+} // namespace fuzzuf::executor

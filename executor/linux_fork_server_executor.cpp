@@ -38,6 +38,8 @@
 #include "fuzzuf/feedback/put_exit_reason_type.hpp"
 #include "fuzzuf/logger/logger.hpp"
 
+namespace fuzzuf::executor {
+
 /**
  * Precondition:
  *   - A file can be created at path path_str_to_write_input.
@@ -423,3 +425,5 @@ fuzzuf::executor::output_t LinuxForkServerExecutor::MoveStdOut() {
 fuzzuf::executor::output_t LinuxForkServerExecutor::MoveStdErr() {
     return std::move( stderr_buffer );
 }
+
+} // namespace fuzzuf::executor

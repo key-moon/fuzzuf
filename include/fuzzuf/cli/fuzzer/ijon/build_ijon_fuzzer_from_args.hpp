@@ -134,7 +134,7 @@ std::unique_ptr<TFuzzer> BuildIJONFuzzerFromArgs(
     case ExecutorKind::NATIVE: {
         using algorithm::ijon::SharedData;
         // Create NativeLinuxExecutor
-        auto nle = std::make_shared<NativeLinuxExecutor>(
+        auto nle = std::make_shared<fuzzuf::executor::NativeLinuxExecutor>(
                             setting->argv,
                             setting->exec_timelimit_ms,
                             setting->exec_memlimit,

@@ -17,6 +17,8 @@
  */
 #include "fuzzuf/executor/coresight_executor.hpp"
 
+namespace fuzzuf::executor {
+
 /**
  * Precondition:
  *    - A file can be created at path path_str_to_write_input.
@@ -36,3 +38,5 @@ CoreSightExecutor::CoreSightExecutor(
     ProxyExecutor::SetCArgvAndDecideInputMode();
     ProxyExecutor::Initilize();
 }
+
+} // namespace fuzzuf::executor

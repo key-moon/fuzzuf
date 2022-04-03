@@ -23,6 +23,8 @@
 #include "fuzzuf/executor/polytracker_executor.hpp"
 #include <sstream>
 
+namespace fuzzuf::executor {
+
 PolyTrackerExecutor::PolyTrackerExecutor(                 
     const fs::path &path_to_executor,
     const fs::path &path_to_inst_bin,
@@ -81,3 +83,5 @@ void PolyTrackerExecutor::SetCArgvAndDecideInputMode() {
 
     cargv.emplace_back(nullptr);
 }
+
+} // namespace fuzzuf::executor

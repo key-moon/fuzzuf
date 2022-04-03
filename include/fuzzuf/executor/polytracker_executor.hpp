@@ -24,6 +24,8 @@
 
 #include "fuzzuf/executor/proxy_executor.hpp"
 
+namespace fuzzuf::executor {
+
 class PolyTrackerExecutor : public ProxyExecutor {
 public:
     const std::string path_str_to_executor; // Path to executor bin
@@ -45,3 +47,5 @@ public:
 
     void SetCArgvAndDecideInputMode();
 };
+
+} // namespace fuzzuf::executor

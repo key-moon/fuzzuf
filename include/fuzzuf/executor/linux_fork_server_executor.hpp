@@ -33,6 +33,8 @@
 #include "fuzzuf/feedback/exit_status_feedback.hpp"
 #include "fuzzuf/channel/fd_channel.hpp"
 
+namespace fuzzuf::executor {
+
 // A class for fuzz execution under native Linux environment (i.e. the Linux environment where the fuzzer tracer and the fuzz target are the same)
 //
 // Responsibility:
@@ -149,3 +151,5 @@ private:
     // ZeroMqChannel put_channel;
     fuzzuf::channel::FdChannel put_channel;
 };
+
+} // namespace fuzzuf::executor

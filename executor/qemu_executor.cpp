@@ -17,6 +17,8 @@
  */
 #include "fuzzuf/executor/qemu_executor.hpp"
 
+namespace fuzzuf::executor {
+
 /**
  * Precondition:
  *    - A file can be created at path path_str_to_write_input.
@@ -35,3 +37,5 @@ QEMUExecutor::QEMUExecutor(
     ProxyExecutor::SetCArgvAndDecideInputMode();
     ProxyExecutor::Initilize();
 }
+
+} // namespace fuzzuf::executor
